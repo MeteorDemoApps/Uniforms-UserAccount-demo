@@ -11,9 +11,14 @@ export default class LoginForm extends Component {
         this.state = {
             loginError: null
         };
+        this.onChange        = this.onChange.bind(this);
         this.onSubmit        = this.onSubmit.bind(this);
         this.onSubmitFailure = this.onSubmitFailure.bind(this);
         this.onSubmitSuccess = this.onSubmitSuccess.bind(this);
+    }
+
+    onChange() {
+      this.setState({loginError: null});
     }
 
     onSubmit({email, password}) {
@@ -40,6 +45,7 @@ export default class LoginForm extends Component {
                 <AutoForm schema={LoginSchema}
                           placeholder
                           error={this.state.loginError}
+                          onChange={this.onChange}
                           onSubmit={this.onSubmit}
                           onSubmitFailure={this.onSubmitFailure}
                           onSubmitSuccess={this.onSubmitSuccess}
